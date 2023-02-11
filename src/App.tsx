@@ -1,5 +1,5 @@
 import './App.css';
-import Tutorial from './components/Tutorial';
+import AgentNotes from './components/AgentNotes';
 import { useFrontContext } from './providers/frontContext';
 
 
@@ -9,7 +9,7 @@ function App() {
   if (!context)
     return (
       <div className="App">
-        <p>Waiting to connect to the Front context.</p>
+        <p>Connecting...</p>
       </div>
     )
 
@@ -23,7 +23,7 @@ function App() {
     case 'singleConversation':
       return (
         <div className="App">
-          <Tutorial />
+          <AgentNotes />
         </div>
       );
     case 'multiConversations':
@@ -33,8 +33,11 @@ function App() {
         </div>
       );
     default:
-      console.error(`Unsupported context type: ${context.type}`);
-      break;
+      return (
+        <div className="App">
+          <p>Unsupported context type: ${context.type}</p>
+        </div>
+      );
   };
 }
 
