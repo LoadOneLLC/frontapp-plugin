@@ -22,9 +22,7 @@ function App() {
       );
     case 'singleConversation':
       return (
-        <div className="App">
-          <AgentNotes />
-        </div>
+        <AgentNotes />
       );
     case 'multiConversations':
       return (
