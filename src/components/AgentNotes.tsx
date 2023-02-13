@@ -3,7 +3,6 @@ import { Button, Heading, Paragraph } from '@frontapp/ui-kit';
 import Front, { SingleConversationContext } from '@frontapp/plugin-sdk';
 import { useEffect, useState } from 'react';
 
-
 function AgentNotes() {
   const context = useFrontContext() as SingleConversationContext;
   const [agentNote, setAgentNote] = useState("");
@@ -37,7 +36,7 @@ function AgentNotes() {
   }, [context.conversation.recipient]);
 
   return (
-    <div className="App">
+    <>
       <Heading>AGENT NOTES</Heading>
       {topCustomer && <Paragraph color="#dc3545">Top Customer</Paragraph>}
       <Paragraph>{agentNote}</Paragraph>
@@ -47,7 +46,7 @@ function AgentNotes() {
       <Button type='primary' className='Action-Button' onClick={() => Front.openUrl(`https://app.load1.com/Quote/Index?frontId=${context.conversation.id}`)}>Quote</Button>
       <br />
       <Button type='primary' className='Action-Button' onClick={() => Front.openUrl(`https://app.load1.com/Quote/BlindBidQuote?frontId=${context.conversation.id}`)}>Blind Bid Quote</Button>
-    </div>
+    </>
   );
 }
 

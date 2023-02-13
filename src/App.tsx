@@ -1,5 +1,6 @@
 import './App.css';
 import AgentNotes from './components/AgentNotes';
+import CarrierGroups from './components/CarrierGroups';
 import { useFrontContext } from './providers/frontContext';
 
 
@@ -17,12 +18,14 @@ function App() {
     case 'noConversation':
       return (
         <div className="App">
-          <p>No conversation selected. Select a conversation to use this plugin.</p>
+          <p>No conversation selected. Select a conversation to see Agent Notes.</p>
         </div>
       );
     case 'singleConversation':
       return (
-        <AgentNotes />
+        <div className="App">
+          <AgentNotes />
+        </div>
       );
     case 'multiConversations':
       return (
