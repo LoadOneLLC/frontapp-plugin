@@ -2,6 +2,7 @@
   "name": "plugin-getting-started",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/FrontPlugin",
   "dependencies": {
     "@frontapp/plugin-sdk": "^1.4.0",
     "@frontapp/ui-kit": "^0.7.3",
