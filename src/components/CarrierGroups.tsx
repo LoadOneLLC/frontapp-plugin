@@ -1,4 +1,4 @@
-import { Dropdown, DropdownItem } from '@frontapp/ui-kit';
+import { Dropdown, DropdownItem, Select, SelectItem } from '@frontapp/ui-kit';
 import { useEffect, useState } from 'react';
 
 type CarrierGroup = {
@@ -28,11 +28,18 @@ function CarrierGroups() {
 
   return (
     <>
-      <Dropdown isLoading={loading}>
+      <Select isLoading={loading}>
         {carrierGroups.map((carrierGroup) => (
-          <DropdownItem type="simple" key={carrierGroup.GroupID} description={carrierGroup.VehicleTypeName}>{carrierGroup.Name}</DropdownItem>
+          <SelectItem
+            key={carrierGroup.GroupID}
+            type="simple"
+            description={carrierGroup.VehicleTypeName}
+            onClick={() => console.log(carrierGroup)}
+          >
+            {carrierGroup.Name}
+          </SelectItem>
         ))}
-      </Dropdown>
+      </Select>
     </>
   );
 }
