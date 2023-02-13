@@ -1,4 +1,4 @@
-import { PluginHeader, PluginLayout } from '@frontapp/ui-kit';
+import { Paragraph, PluginHeader, PluginLayout } from '@frontapp/ui-kit';
 import './App.css';
 import AgentNotes from './components/AgentNotes';
 import CarrierGroups from './components/CarrierGroups';
@@ -21,7 +21,7 @@ function App() {
         <PluginHeader>
           Load One
         </PluginHeader>
-        {context.type === 'singleConversation' ? <AgentNotes /> : <p>Select a conversation to see Agent Notes.</p>}
+        {context.type === 'singleConversation' ? <AgentNotes /> : <Paragraph>Select a conversation to see Agent Notes.</Paragraph>}
         <CarrierGroups />
       </PluginLayout>
     </div>
