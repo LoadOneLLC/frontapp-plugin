@@ -1,4 +1,4 @@
-import { Dropdown, DropdownItem, Select, SelectItem } from '@frontapp/ui-kit';
+import { Select, SelectItem } from '@frontapp/ui-kit';
 import { useEffect, useState } from 'react';
 
 type CarrierGroup = {

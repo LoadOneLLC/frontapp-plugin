@@ -41,11 +41,16 @@ function AgentNotes() {
       {topCustomer && <Paragraph color="#dc3545">Top Customer</Paragraph>}
       <Paragraph>{agentNote}</Paragraph>
       <br />
-      {billingCustomerId && <Button type='primary' className='Action-Button' onClick={() => Front.openUrl(`https://app.load1.com/Customers/Customer/${billingCustomerId}`)}>Billing Customer</Button>}
-      <br />
-      <Button type='primary' className='Action-Button' onClick={() => Front.openUrl(`https://app.load1.com/Quote/Index?frontId=${context.conversation.id}`)}>Quote</Button>
-      <br />
-      <Button type='primary' className='Action-Button' onClick={() => Front.openUrl(`https://app.load1.com/Quote/BlindBidQuote?frontId=${context.conversation.id}`)}>Blind Bid Quote</Button>
+      <div className="Action-Buttons">
+        {billingCustomerId && <>
+          <Button type='primary' className='Action-Button' onClick={() => Front.openUrl(`https://app.load1.com/Customers/Customer/${billingCustomerId}`)}>Billing Customer</Button>
+          <br />
+        </>}
+        <Button type='primary' className='Action-Button' onClick={() => Front.openUrl(`https://app.load1.com/Quote/Index?frontId=${context.conversation.id}`)}>Quote</Button>
+        <br />
+        <Button type='primary' className='Action-Button' onClick={() => Front.openUrl(`https://app.load1.com/Quote/BlindBidQuote?frontId=${context.conversation.id}`)}>Blind Bid Quote</Button>
+        <br />
+      </div>
     </>
   );
 }
