@@ -14,32 +14,12 @@ function App() {
       </div>
     )
 
-  switch(context.type) {
-    case 'noConversation':
-      return (
-        <div className="App">
-          <p>No conversation selected. Select a conversation to see Agent Notes.</p>
-        </div>
-      );
-    case 'singleConversation':
-      return (
-        <div className="App">
-          <AgentNotes />
-        </div>
-      );
-    case 'multiConversations':
-      return (
-        <div className="App">
-          <p>Multiple conversations selected. Select only one conversation to use this plugin.</p>
-        </div>
-      );
-    default:
-      return (
-        <div className="App">
-          <p>Unsupported context type: ${context.type}</p>
-        </div>
-      );
-  };
+  return (
+    <div className="App">
+      {context.type === 'singleConversation' ? <AgentNotes /> : <p>Select a conversation to see Agent Notes.</p>}
+      <CarrierGroups />
+    </div>
+  );
 }
 
 export default App;
