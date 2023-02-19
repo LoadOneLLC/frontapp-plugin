@@ -1,4 +1,3 @@
-import { Select, SelectItem } from '@frontapp/ui-kit';
 import { useEffect, useState } from 'react';
 
 type CarrierGroup = {
@@ -28,18 +27,16 @@ function CarrierGroups() {
 
   return (
     <>
-      <Select isLoading={loading}>
+      <select>
         {carrierGroups.map((carrierGroup) => (
-          <SelectItem
+          <option
             key={carrierGroup.GroupID}
-            type="simple"
-            description={carrierGroup.VehicleTypeName}
             onClick={() => console.log(carrierGroup)}
           >
             {carrierGroup.Name}
-          </SelectItem>
+          </option>
         ))}
-      </Select>
+      </select>
     </>
   );
 }

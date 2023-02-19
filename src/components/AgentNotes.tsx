@@ -1,5 +1,4 @@
 import { useFrontContext } from '../providers/frontContext';
-import { Button, Heading, Paragraph } from '@frontapp/ui-kit';
 import Front, { SingleConversationContext } from '@frontapp/plugin-sdk';
 import { useEffect, useState } from 'react';
 
@@ -37,18 +36,18 @@ function AgentNotes() {
 
   return (
     <>
-      <Heading>AGENT NOTES</Heading>
-      {topCustomer && <Paragraph color="#dc3545">Top Customer</Paragraph>}
-      <Paragraph>{agentNote}</Paragraph>
+      <h4 className='dark:text-white'>AGENT NOTES</h4>
+      {topCustomer && <p className='dark:text-red-600'>Top Customer</p>}
+      <p className='dark:text-white'>{agentNote}</p>
       <br />
-      <div className="Action-Buttons">
+      <div>
         {billingCustomerId && <>
-          <Button type='primary' className='Action-Button' onClick={() => Front.openUrl(`https://app.load1.com/Customers/Customer/${billingCustomerId}`)}>Billing Customer</Button>
+          <button onClick={() => Front.openUrl(`https://app.load1.com/Customers/Customer/${billingCustomerId}`)}>Billing Customer</button>
           <br />
         </>}
-        <Button type='primary' className='Action-Button' onClick={() => Front.openUrl(`https://app.load1.com/Quote/Index?frontId=${context.conversation.id}`)}>Quote</Button>
+        <button onClick={() => Front.openUrl(`https://app.load1.com/Quote/Index?frontId=${context.conversation.id}`)}>Quote</button>
         <br />
-        <Button type='primary' className='Action-Button' onClick={() => Front.openUrl(`https://app.load1.com/Quote/BlindBidQuote?frontId=${context.conversation.id}`)}>Blind Bid Quote</Button>
+        <button onClick={() => Front.openUrl(`https://app.load1.com/Quote/BlindBidQuote?frontId=${context.conversation.id}`)}>Blind Bid Quote</button>
         <br />
       </div>
     </>
