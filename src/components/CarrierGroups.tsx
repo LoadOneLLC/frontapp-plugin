@@ -1,16 +1,12 @@
 import { useEffect, useState, Fragment } from 'react';
-import { Combobox, Menu, Transition } from '@headlessui/react';
-import { CheckIcon, ChevronDownIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import { Combobox,  Transition } from '@headlessui/react';
+import { ChevronUpDownIcon } from '@heroicons/react/20/solid';
 
 type CarrierGroup = {
   GroupID: number;
   Name: string;
   VehicleTypeName: string | null;
 };
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
 
 function CarrierGroups() {
   const [loading, setLoading] = useState(true);
@@ -31,6 +27,21 @@ function CarrierGroups() {
       });
   }, []);
 
+  const _copyEmails = (carrierGroup: CarrierGroup) => {
+    fetch('/Front/GetCarrierEmails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'bearer ' + new URLSearchParams(window.location.search).get('auth_secret'),
+      },
+      body: JSON.stringify({ GroupID: carrierGroup.GroupID }),
+    })
+      .then(async (response) => {
+        var json = await response.json() as string[];
+        navigator.clipboard.writeText(json.join(','));
+      });
+  }
+
   const filteredCarriers =
     filter === ''
       ? carrierGroups
@@ -40,9 +51,9 @@ function CarrierGroups() {
 
   return (
     <>
-      <Combobox onChange={(value) => console.log(value)}>
+      <Combobox onChange={(value: CarrierGroup) => _copyEmails(value)}>
         <div className="relative mt-1">
-          <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white  text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+          <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
             <Combobox.Input
               className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
               placeholder="Copy Carrier Emails"
@@ -85,6 +96,7 @@ function CarrierGroups() {
           </Transition>
         </div>
       </Combobox>
+      {/*<a href="https://app.load1.com/Carrier/Groups" className="text-sm text-gray-500 hover:text-gray-700">Manage Carrier Groups</a>*/}
     </>
   );
 }
