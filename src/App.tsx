@@ -7,10 +7,21 @@ import { useFrontContext } from './providers/frontContext';
 function App() {
   const context = useFrontContext();
 
+  // Testing in dev mode
+  if (import.meta.env.DEV)
+  {
+    return (
+      <div className="p-1">
+        <AgentNotes />
+        <CarrierGroups />
+      </div>
+    );
+  }
+
   if (!context)
     return (
-      <div className="p-1 text-center dark:text-white">
-        <p>Connecting...</p>
+      <div className="p-1 w-full">
+        <p className="text-center text-xl dark:text-white">Connecting...</p>
       </div>
     )
 
