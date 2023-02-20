@@ -42,7 +42,7 @@ function CarrierGroups() {
     <>
       <Combobox onChange={(value) => console.log(value)}>
         <div className="relative mt-1">
-          <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+          <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white  text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
             <Combobox.Input
               className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
               placeholder="Copy Carrier Emails"
@@ -62,16 +62,16 @@ function CarrierGroups() {
             leaveTo="opacity-0"
             afterLeave={() => setFilter('')}
           >
-            <Combobox.Options className="w-full rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+            <Combobox.Options className="mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-900">
               {filteredCarriers.length === 0 && filter !== '' ? (
-                <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
+                <div className="relative cursor-default select-none py-2 px-4 text-gray-700 dark:text-gray-300">
                   Nothing found.
                 </div>
               ) : (
               filteredCarriers.map((carrierGroup) => (
                 <Combobox.Option
                   key={carrierGroup.GroupID}
-                  className={({ active }) => `relative cursor-default select-none py-2 pl-10 pr-4 text-gray-900`}
+                  className={({ active }) => `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'text-white bg-sky-600' : 'text-gray-900 dark:text-gray-300'}`}
                   value={carrierGroup}
                 >
                   <span
