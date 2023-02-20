@@ -39,16 +39,12 @@ function AgentNotes() {
       <h4 className='text-xl dark:text-white'>AGENT NOTES</h4>
       {topCustomer && <p className='dark:text-red-600'>Top Customer</p>}
       <p className='dark:text-slate-200'>{agentNote}</p>
-      <br />
       <div>
         {billingCustomerId && <>
-          <button onClick={() => Front.openUrl(`https://app.load1.com/Customers/Customer/${billingCustomerId}`)}>Billing Customer</button>
-          <br />
+          <button className="px-4 py-2 mb-1 d-block w-full font-semibold text-sm bg-sky-600 text-white rounded-full shadow-sm" onClick={() => Front.openUrl(`https://app.load1.com/Customers/Customer/${billingCustomerId}`)}>Billing Customer</button>
         </>}
-        <button onClick={() => Front.openUrl(`https://app.load1.com/Quote/Index?frontId=${context.conversation.id}`)}>Quote</button>
-        <br />
-        <button onClick={() => Front.openUrl(`https://app.load1.com/Quote/BlindBidQuote?frontId=${context.conversation.id}`)}>Blind Bid Quote</button>
-        <br />
+        <button className="px-4 py-2 mb-1 d-block w-full font-semibold text-sm bg-sky-600 text-white rounded-full shadow-sm" onClick={() => Front.openUrl(`https://app.load1.com/Quote/Index?frontId=${context.conversation.id}`)}>Quote</button>
+        <button className="px-4 py-2 mb-1 d-block w-full font-semibold text-sm bg-sky-600 text-white rounded-full shadow-sm" onClick={() => Front.openUrl(`https://app.load1.com/Quote/BlindBidQuote?frontId=${context.conversation.id}`)}>Blind Bid Quote</button>
       </div>
     </>
   );
