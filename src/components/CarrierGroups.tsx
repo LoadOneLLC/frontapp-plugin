@@ -50,7 +50,8 @@ function CarrierGroups() {
         })
 
   return (
-    <>
+    <div>
+      <label htmlFor="carrierGroups" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Copy Carrier Group Emails</label>
       <Combobox onChange={(value: CarrierGroup) => _copyEmails(value)}>
         <div className="relative mt-1">
           <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
@@ -97,7 +98,7 @@ function CarrierGroups() {
         </div>
       </Combobox>
       {/*<a href="https://app.load1.com/Carrier/Groups" className="text-sm text-gray-500 hover:text-gray-700">Manage Carrier Groups</a>*/}
-    </>
+    </div>
   );
 }
 

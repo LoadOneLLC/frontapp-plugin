@@ -1,6 +1,8 @@
 import './App.css';
 import AgentNotes from './components/AgentNotes';
 import CarrierGroups from './components/CarrierGroups';
+import OrderStatusLink from './components/OrderStatusLink';
+import OrderStatusUpdate from './components/OrderStatusUpdate';
 import { useFrontContext } from './providers/frontContext';
 
 
@@ -13,6 +15,11 @@ function App() {
     return (
       <div className="p-1">
         <AgentNotes />
+        <br />
+        <OrderStatusUpdate />
+        <br />
+        <OrderStatusLink />
+        <br />
         <CarrierGroups />
       </div>
     );
@@ -28,6 +35,11 @@ function App() {
   return (
     <div className="p-1">
       {context.type === 'singleConversation' ? <AgentNotes /> : <p className="dark:text-slate-200">Select a conversation to see Agent Notes.</p>}
+      <br />
+      <OrderStatusUpdate />
+      <br />
+      <OrderStatusLink />
+      <br />
       <CarrierGroups />
     </div>
   );
