@@ -1,5 +1,5 @@
 import Front, { SingleConversationContext } from '@frontapp/plugin-sdk';
-import { ClipboardDocumentListIcon } from "@heroicons/react/20/solid";
+import { EnvelopeIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { useFrontContext } from "../providers/frontContext";
 
@@ -42,7 +42,7 @@ function OrderStatusUpdate() {
         });
   }
 
-  return <div>
+  return <div className="mt-2">
     <label htmlFor="orderNumber" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Reply w/ Order Status</label>
     <div className="mt-1 flex rounded-md shadow-sm">
       <div className="relative flex flex-grow items-stretch focus-within:z-10">
@@ -62,7 +62,7 @@ function OrderStatusUpdate() {
         className="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-none  bg-sky-600 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-700 focus:outline-none focus:ring-0"
         onClick={() => _insertStatusUpdate()}
       >
-        <ClipboardDocumentListIcon className="h-5 w-5 text-white" />
+        <EnvelopeIcon className="h-5 w-5 text-white" />
         <span>Reply</span>
       </button>
     </div>

@@ -15,11 +15,8 @@ function App() {
     return (
       <div className="p-1">
         <AgentNotes />
-        <br />
         <OrderStatusUpdate />
-        <br />
         <OrderStatusLink />
-        <br />
         <CarrierGroups />
       </div>
     );
@@ -34,12 +31,9 @@ function App() {
 
   return (
     <div className="p-1">
-      {context.type === 'singleConversation' ? <AgentNotes /> : <p className="dark:text-slate-200">Select a conversation to see Agent Notes.</p>}
-      <br />
-      <OrderStatusUpdate />
-      <br />
+      {context.type === 'singleConversation' ? <AgentNotes /> : null}
+      {context.type === 'singleConversation' ? <OrderStatusUpdate /> : null}
       <OrderStatusLink />
-      <br />
       <CarrierGroups />
     </div>
   );

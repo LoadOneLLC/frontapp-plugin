@@ -1,11 +1,8 @@
-import Front, { SingleConversationContext } from '@frontapp/plugin-sdk';
 import { ClipboardDocumentListIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
-import { useFrontContext } from "../providers/frontContext";
 
 function OrderStatusLink() {
   const [orderNumber, setOrderNumber] = useState('');
-  const context = useFrontContext() as SingleConversationContext;
 
   const _insertStatusUpdate = () => {
     if (orderNumber.length < 7) {
@@ -24,26 +21,15 @@ function OrderStatusLink() {
         .then(async (response) => {
           var json = await response.json();
 
-          context.listMessages().then((messages) =>
-            Front.createDraft({
-              content: {
-                body: `<a href='${json.Link}'>Click here to track your shipment</a>`,
-                type: 'html'
-              },
-              replyOptions: {
-                type: 'replyAll',
-                originalMessageId: messages.results[0].id
-              }
-            })
-          );
+          navigator.clipboard.writeText(json.Link);
         })
         .catch(() => {
             window.alert('Order # - Unable to create Status Update, usually this is because we couldn\'t find the Pro #');
         });
   }
 
-  return <div>
-    <label htmlFor="orderNumber" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Reply w/ Tracking Link</label>
+  return <div className="mt-2">
+    <label htmlFor="orderNumber" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Copy Tracking Link</label>
     <div className="mt-1 flex rounded-md shadow-sm">
       <div className="relative flex flex-grow items-stretch focus-within:z-10">
         <input
@@ -63,7 +49,7 @@ function OrderStatusLink() {
         onClick={() => _insertStatusUpdate()}
       >
         <ClipboardDocumentListIcon className="h-5 w-5 text-white" />
-        <span>Reply</span>
+        <span>Copy</span>
       </button>
     </div>
   </div>
