@@ -1,12 +1,13 @@
 import { ClipboardDocumentListIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 function OrderStatusLink() {
   const [orderNumber, setOrderNumber] = useState('');
 
   const _insertStatusUpdate = () => {
     if (orderNumber.length < 7) {
-      window.alert('Please enter a valid Order #');
+      toast('Please enter a valid Order #');
       return;
     }
 
@@ -22,9 +23,10 @@ function OrderStatusLink() {
           var json = await response.json();
 
           navigator.clipboard.writeText(json.Link);
+          toast("Link copied!");
         })
         .catch(() => {
-            window.alert('Order # - Unable to create Status Update, usually this is because we couldn\'t find the Pro #');
+          toast('Unable to create Status Update, usually this is because we couldn\'t find the Order #');
         });
   }
 

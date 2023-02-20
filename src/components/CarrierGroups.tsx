@@ -1,6 +1,7 @@
 import { useEffect, useState, Fragment } from 'react';
 import { Combobox,  Transition } from '@headlessui/react';
 import { ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import { toast } from 'react-toastify';
 
 type CarrierGroup = {
   GroupID: number;
@@ -39,6 +40,7 @@ function CarrierGroups() {
       .then(async (response) => {
         var json = await response.json() as string[];
         navigator.clipboard.writeText(json.join(','));
+        toast("Emails copied!");
       });
   }
 
@@ -50,7 +52,7 @@ function CarrierGroups() {
         })
 
   return (
-    <div>
+    <div className="mt-2">
       <label htmlFor="carrierGroups" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Copy Carrier Group Emails</label>
       <Combobox onChange={(value: CarrierGroup) => _copyEmails(value)}>
         <div className="relative mt-1">

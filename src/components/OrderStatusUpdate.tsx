@@ -1,6 +1,7 @@
 import Front, { SingleConversationContext } from '@frontapp/plugin-sdk';
 import { EnvelopeIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
+import { toast } from 'react-toastify';
 import { useFrontContext } from "../providers/frontContext";
 
 function OrderStatusUpdate() {
@@ -9,7 +10,7 @@ function OrderStatusUpdate() {
 
   const _insertStatusUpdate = () => {
     if (orderNumber.length < 7) {
-      window.alert('Please enter a valid Order #');
+      toast('Please enter a valid Order #');
       return;
     }
 
@@ -38,7 +39,7 @@ function OrderStatusUpdate() {
           );
         })
         .catch(() => {
-            window.alert('Order # - Unable to create Status Update, usually this is because we couldn\'t find the Pro #');
+            toast('Unable to create Status Update, usually this is because we couldn\'t find the Order #');
         });
   }
 
