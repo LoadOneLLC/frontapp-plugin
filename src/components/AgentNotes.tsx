@@ -36,9 +36,9 @@ function AgentNotes() {
 
   return (
     <>
-      <h4 className='dark:text-white'>AGENT NOTES</h4>
+      <h4 className='text-xl dark:text-white'>AGENT NOTES</h4>
       {topCustomer && <p className='dark:text-red-600'>Top Customer</p>}
-      <p className='dark:text-white'>{agentNote}</p>
+      <p className='dark:text-slate-200'>{agentNote}</p>
       <br />
       <div>
         {billingCustomerId && <>

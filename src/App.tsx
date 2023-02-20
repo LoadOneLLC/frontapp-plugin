@@ -9,14 +9,14 @@ function App() {
 
   if (!context)
     return (
-      <div className="text-center dark:text-white">
+      <div className="p-1 text-center dark:text-white">
         <p>Connecting...</p>
       </div>
     )
 
   return (
-    <div className="text-center">
-      {context.type === 'singleConversation' ? <AgentNotes /> : <p className="dark:text-white">Select a conversation to see Agent Notes.</p>}
+    <div className="p-1">
+      {context.type === 'singleConversation' ? <AgentNotes /> : <p className="dark:text-slate-200">Select a conversation to see Agent Notes.</p>}
       <CarrierGroups />
     </div>
   );
