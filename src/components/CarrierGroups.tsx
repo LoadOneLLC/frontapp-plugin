@@ -29,7 +29,7 @@ function CarrierGroups() {
   }, []);
 
   const _copyEmails = (carrierGroup: CarrierGroup) => {
-    fetch('/Front/GetCarrierEmails', {
+    fetch('/Front/GetCarrierGroupEmails', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -38,8 +38,8 @@ function CarrierGroups() {
       body: JSON.stringify({ GroupID: carrierGroup.GroupID }),
     })
       .then(async (response) => {
-        var json = await response.json() as string[];
-        navigator.clipboard.writeText(json.join(','));
+        var json = await response.json() as { FullName: string, Email: string }[];
+        navigator.clipboard.writeText(json.map((carrier) => carrier.Email).join(','));
         toast("Emails copied!");
       });
   }
