@@ -1,11 +1,11 @@
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import AgentNotes from './components/AgentNotes';
 import CarrierGroups from './components/CarrierGroups';
 import OrderStatusLink from './components/OrderStatusLink';
 import OrderStatusUpdate from './components/OrderStatusUpdate';
 import { useFrontContext } from './providers/frontContext';
-import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const context = useFrontContext();
@@ -19,7 +19,7 @@ function App() {
         <OrderStatusUpdate />
         <OrderStatusLink />
         <CarrierGroups />
-        <ToastContainer />
+        <ToastContainer theme='dark' />
       </div>
     );
   }
@@ -37,7 +37,7 @@ function App() {
       {context.type === 'singleConversation' ? <OrderStatusUpdate /> : null}
       <OrderStatusLink />
       <CarrierGroups />
-      <ToastContainer />
+      <ToastContainer theme='dark' />
     </div>
   );
 }

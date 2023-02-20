@@ -1,3 +1,7 @@
+.Toastify__progress-bar-theme--dark {
+  background-color: rgb(2, 132, 199);
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
