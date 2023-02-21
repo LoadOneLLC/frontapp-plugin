@@ -33,7 +33,7 @@ function OrderStatusUpdate() {
               },
               replyOptions: {
                 type: 'replyAll',
-                originalMessageId: messages.results[0].id
+                originalMessageId: messages.results[messages.results.length - 1].id
               }
             })
           );
