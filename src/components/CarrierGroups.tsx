@@ -40,8 +40,12 @@ function CarrierGroups() {
     })
       .then(async (response) => {
         var json = await response.json() as { FullName: string, Email: string }[];
-        navigator.clipboard.writeText(json.map((carrier) => carrier.Email).join(','));
-        toast("Emails copied!");
+        if (json.length === 0) {
+          toast("No emails found!");
+        } else {
+          navigator.clipboard.writeText(json.map((carrier) => carrier.Email).join(','));
+          toast("Emails copied!");
+        }
       });
   }
 
