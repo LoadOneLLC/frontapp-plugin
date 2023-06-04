@@ -54,13 +54,17 @@ function AgentNotes() {
       },
       body: JSON.stringify({ 
         ConversationID: context.conversation.id,
-        TeammateID: context.teammate.id,
+        TeammateID: context.teammate.id
       })
     })
     .then(async (response) => {
       var json = await response.json() as JsonResponse;
-      var quoteLink = json.Links.find(l => l.Name === 'self');
-      if (quoteLink) Front.openUrl(quoteLink.Link);
+      if (json.Success) {
+        var quoteLink = json.Links.find(l => l.Name === 'self');
+        if (quoteLink) Front.openUrl(quoteLink.Link);
+      } else {
+        toast(json.ErrorMessage);
+      }
     })
     .catch(() => {
       toast("Error creating quote!");
