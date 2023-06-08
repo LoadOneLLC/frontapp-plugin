@@ -86,7 +86,7 @@ function AgentNotes() {
         Build Quote
       </button>
       <button disabled={creatingQuote} className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={createQuote}>
-        Create Quote <i>AI</i>
+        {creatingQuote ? 'Creating Quote...' : <>Create Quote <i>AI</i></>}
       </button>
       <button className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={() => Front.openUrl(`https://app.load1.com/Quote/BlindBidQuote?frontId=${context.conversation.id}`)}>
         Blind Bid Quote
