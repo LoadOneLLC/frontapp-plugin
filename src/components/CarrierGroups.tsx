@@ -10,7 +10,7 @@ type CarrierGroup = {
 };
 
 function CarrierGroups() {
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [carrierGroups, setCarrierGroups] = useState<CarrierGroup[]>([]);
   const [filter, setFilter] = useState('');
 
@@ -23,7 +23,7 @@ function CarrierGroups() {
       },
     })
       .then(async (response) => {
-        var json = await response.json() as CarrierGroup[];
+        const json = await response.json() as CarrierGroup[];
         setCarrierGroups(json);
         setLoading(false);
       });
@@ -39,7 +39,7 @@ function CarrierGroups() {
       body: JSON.stringify({ GroupID: carrierGroup.GroupID }),
     })
       .then(async (response) => {
-        var json = await response.json() as { FullName: string, Email: string }[];
+        const json = await response.json() as { FullName: string, Email: string }[];
         if (json.length === 0) {
           toast("No emails found!");
         } else {

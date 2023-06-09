@@ -20,7 +20,7 @@ function OrderStatusLink() {
         body: JSON.stringify({ OrderNumber: orderNumber })
     })
         .then(async (response) => {
-          var json = await response.json();
+          const json = await response.json();
 
           navigator.clipboard.writeText(json.Link);
           toast("Link copied!");

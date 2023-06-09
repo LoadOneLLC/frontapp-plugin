@@ -7,7 +7,4 @@ import { NoteViewModel } from "./note-view-model";
 
 export interface ViewModel {
     Notes: NoteViewModel[];
-    AgentNote: string;
-    BillToCustomerID: number | null;
-    IsTop: boolean;
 }

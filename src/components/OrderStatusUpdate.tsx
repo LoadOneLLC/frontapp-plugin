@@ -23,7 +23,7 @@ function OrderStatusUpdate() {
         body: JSON.stringify({ OrderNumber: orderNumber })
     })
         .then(async (response) => {
-          var json = await response.json();
+          const json = await response.json();
 
           context.listMessages().then((messages) =>
             Front.createDraft({

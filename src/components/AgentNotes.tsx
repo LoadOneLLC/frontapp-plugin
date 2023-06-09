@@ -49,7 +49,7 @@ function AgentNotes() {
       body: JSON.stringify({ email: context.conversation.recipient.handle })
     })
       .then(async (response) => {
-        var json = await response.json() as ViewModel;
+        const json = await response.json() as ViewModel;
         setNotes(json.Notes);
         setSelectedNoteID(json.Notes.length === 1 ? json.Notes[0].ID : 0);
       })
@@ -73,9 +73,9 @@ function AgentNotes() {
       })
     })
     .then(async (response) => {
-      var json = await response.json() as JsonResponse;
+      const json = await response.json() as JsonResponse;
       if (json.Success) {
-        var quoteLink = json.Links.find(l => l.Name === 'self');
+        const quoteLink = json.Links.find(l => l.Name === 'self');
         if (quoteLink) Front.openUrl(quoteLink.Link);
       } else {
         toast(json.ErrorMessage);
