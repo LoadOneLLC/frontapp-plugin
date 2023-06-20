@@ -100,7 +100,8 @@ function AgentNotes() {
       },
       body: JSON.stringify({ 
         ConversationID: context.conversation.id,
-        TeammateID: context.teammate.id
+        TeammateID: context.teammate.id,
+        Draft: true
       })
     })
     .then(async (response) => {
@@ -178,7 +179,7 @@ function AgentNotes() {
         {creatingQuote ? 'Creating Quote...' : <>Create Quote <i>AI</i></>}
       </button>
       <button disabled={creatingQuote || replyingQuote} className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={replyQuote}>
-        {replyingQuote ? 'Offering Quote...' : <>BETA: Reply <i>AI</i></>}
+        {replyingQuote ? 'Offering Quote...' : <>Draft Reply <i>AI</i></>}
       </button>
       <button className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={() => Front.openUrl(`https://app.load1.com/Quote/BlindBidQuote?frontId=${context.conversation.id}`)}>
         Blind Bid Quote
