@@ -174,11 +174,11 @@ function AgentNotes() {
       <button className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={() => Front.openUrl(`https://app.load1.com/Quote/Index?frontId=${context.conversation.id}`)}>
         Build Quote
       </button>
-      <button disabled={creatingQuote} className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={createQuote}>
+      <button disabled={creatingQuote || replyingQuote} className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={createQuote}>
         {creatingQuote ? 'Creating Quote...' : <>Create Quote <i>AI</i></>}
       </button>
-      <button disabled={replyingQuote} className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={replyQuote}>
-        {replyingQuote ? 'Replying Quote...' : <>BETA: Reply <i>AI</i></>}
+      <button disabled={creatingQuote || replyingQuote} className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={replyQuote}>
+        {replyingQuote ? 'Offering Quote...' : <>BETA: Reply <i>AI</i></>}
       </button>
       <button className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={() => Front.openUrl(`https://app.load1.com/Quote/BlindBidQuote?frontId=${context.conversation.id}`)}>
         Blind Bid Quote
