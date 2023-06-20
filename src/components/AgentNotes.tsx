@@ -13,6 +13,7 @@ function AgentNotes() {
   const [notes, setNotes] = useState<NoteViewModel[]>([]);
   const [selectedNoteID, setSelectedNoteID] = useState(0);
   const [creatingQuote, setCreatingQuote] = useState(false);
+  const [replyingQuote, setReplyingQuote] = useState(false);
 
   useEffect(() => {
     if (import.meta.env.DEV)
@@ -89,6 +90,33 @@ function AgentNotes() {
     });
   }
 
+  const replyQuote = () => {
+    setReplyingQuote(true);
+    fetch('/Front/ReplyQuote', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'bearer ' + new URLSearchParams(window.location.search).get('auth_secret'),
+      },
+      body: JSON.stringify({ 
+        ConversationID: context.conversation.id,
+        TeammateID: context.teammate.id
+      })
+    })
+    .then(async (response) => {
+      const json = await response.json() as JsonResponse;
+      if (json.Success === false) {
+        toast(json.ErrorMessage);
+      }
+    })
+    .catch(() => {
+      toast("Error replying quote!");
+    })
+    .finally(() => {
+      setReplyingQuote(false);
+    });
+  }
+
   const renderAgentNote = (note: NoteViewModel) => {
     return <>
       {note.IsTop && <p className='dark:text-red-600'>Top Customer</p>}
@@ -148,6 +176,9 @@ function AgentNotes() {
       </button>
       <button disabled={creatingQuote} className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={createQuote}>
         {creatingQuote ? 'Creating Quote...' : <>Create Quote <i>AI</i></>}
+      </button>
+      <button disabled={replyingQuote} className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={replyQuote}>
+        {replyingQuote ? 'Replying Quote...' : <>BETA: Reply <i>AI</i></>}
       </button>
       <button className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={() => Front.openUrl(`https://app.load1.com/Quote/BlindBidQuote?frontId=${context.conversation.id}`)}>
         Blind Bid Quote
