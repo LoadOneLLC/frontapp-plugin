@@ -118,6 +118,11 @@ function AgentNotes() {
     });
   }
 
+  const copyConversationID = (cnv_id: string) => {
+    navigator.clipboard.writeText(cnv_id);
+    toast("Conversation copied!");
+  }
+
   const renderAgentNote = (note: NoteViewModel) => {
     return <>
       {note.IsTop && <p className='dark:text-red-600'>Top Customer</p>}
@@ -183,6 +188,9 @@ function AgentNotes() {
       </button>
       <button className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={() => Front.openUrl(`https://app.load1.com/Quote/BlindBidQuote?frontId=${context.conversation.id}`)}>
         Blind Bid Quote
+      </button>
+      <button className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={() => copyConversationID(context.conversation.id)}>
+        Copy Conversation ID
       </button>
     </>
   );
