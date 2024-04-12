@@ -7,7 +7,7 @@ import OrderStatusLink from './components/OrderStatusLink';
 import OrderStatusUpdate from './components/OrderStatusUpdate';
 import { useFrontContext } from './providers/frontContext';
 
-function App() {
+const App = () => {
   const context = useFrontContext();
 
   // Testing in dev mode

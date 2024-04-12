@@ -2,7 +2,7 @@ import { ClipboardDocumentListIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-function OrderStatusLink() {
+const OrderStatusLink = () => {
   const [orderNumber, setOrderNumber] = useState('');
 
   const _insertStatusUpdate = () => {

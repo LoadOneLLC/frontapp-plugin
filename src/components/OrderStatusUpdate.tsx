@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast } from 'react-toastify';
 import { useFrontContext } from "../providers/frontContext";
 
-function OrderStatusUpdate() {
+const OrderStatusUpdate = () => {
   const [orderNumber, setOrderNumber] = useState('');
   const context = useFrontContext() as SingleConversationContext;
 

@@ -9,7 +9,7 @@ type CarrierGroup = {
   VehicleTypeName: string | null;
 };
 
-function CarrierGroups() {
+const CarrierGroups = () => {
   const [, setLoading] = useState(true);
   const [carrierGroups, setCarrierGroups] = useState<CarrierGroup[]>([]);
   const [filter, setFilter] = useState('');

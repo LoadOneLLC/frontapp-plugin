@@ -8,7 +8,7 @@ import { ViewModel } from '../TypeGen/GetAgentNote/view-model';
 import { NoteViewModel } from '../TypeGen/GetAgentNote/note-view-model';
 import { ChevronUpDownIcon } from '@heroicons/react/20/solid';
 
-function AgentNotes() {
+const AgentNotes = () => {
   const context = useFrontContext() as SingleConversationContext;
   const [notes, setNotes] = useState<NoteViewModel[]>([]);
   const [selectedNoteID, setSelectedNoteID] = useState(0);
