@@ -7,6 +7,7 @@ import { JsonResponse } from '../TypeGen/json-response';
 
 const CustomerQuoted = () => {
   const [bidAmount, setBidAmount] = useState('');
+  const [saving, setSaving] = useState(false);
   const context = useFrontContext() as SingleConversationContext;
 
   const _mark = () => {
@@ -16,6 +17,7 @@ const CustomerQuoted = () => {
       return;
     }
 
+    setSaving(true);
     fetch('/Front/CustomerQuoted', {
       method: 'POST',
       headers: {
@@ -39,7 +41,8 @@ const CustomerQuoted = () => {
       })
       .catch(() => {
         toast('Unable to mark as quoted');
-      });
+      })
+      .finally(() => setSaving(false));
   }
 
   return <div className="mt-2">
@@ -59,6 +62,7 @@ const CustomerQuoted = () => {
       </div>
       <button
         type="button"
+        disabled={saving}
         className="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-none  bg-sky-600 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-700 focus:outline-none focus:ring-0"
         onClick={_mark}
       >
