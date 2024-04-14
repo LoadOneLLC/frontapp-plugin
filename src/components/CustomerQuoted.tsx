@@ -31,8 +31,8 @@ const CustomerQuoted = () => {
       .then(async (response) => {
         const json = await response.json() as JsonResponse;
         if (json.Success) {
-          // Create comment with $bidAmount
           toast('Marked as quoted');
+          setBidAmount('');
         } else {
           toast(json.ErrorMessage);
         }
