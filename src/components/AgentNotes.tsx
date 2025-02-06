@@ -24,6 +24,7 @@ const AgentNotes = () => {
           Tag1: "Test 1",
           AgentNote: "L-10, Asset Only, Bill-To: FIRJA, Autho: Confirm @ Booking",
           BillToCustomerID: 1,
+          DedicatedEmail: 'app@load1.com',
           IsTop: true
         },
         {
@@ -31,6 +32,7 @@ const AgentNotes = () => {
           Tag1: "Test 2",
           AgentNote: "L-10, Asset Only, Bill-To: FIRJA, Autho: Confirm @ Booking",
           BillToCustomerID: 1,
+          DedicatedEmail: null,
           IsTop: false
         },
       ]);
@@ -123,10 +125,24 @@ const AgentNotes = () => {
     toast("Conversation copied!");
   }
 
+  const addRecipientToEmail = (email: string) => {
+    if (typeof context.conversation.draftId !== 'undefined') {
+      context.updateDraft(context.conversation.draftId, {
+        updateMode: 'insert',
+        cc: [email],
+      });
+    } else {
+      toast("Draft was not found!");
+    }
+  }
+
   const renderAgentNote = (note: NoteViewModel) => {
     return <>
       {note.IsTop && <p className='dark:text-red-600'>Top Customer</p>}
       <p className='dark:text-slate-200 mb-2'>{note.AgentNote}</p>
+      {note.DedicatedEmail && <button className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={() => addRecipientToEmail(note.DedicatedEmail as string)}>
+        CC: {note.DedicatedEmail}
+      </button>}
       {note.BillToCustomerID && <button className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm" onClick={() => Front.openUrl(`https://app.load1.com/Customers/Customer/${note.BillToCustomerID}`)}>
         Billing Customer
       </button>}

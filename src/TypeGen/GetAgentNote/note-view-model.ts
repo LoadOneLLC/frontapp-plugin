@@ -8,5 +8,6 @@ export interface NoteViewModel {
     Tag1: string;
     AgentNote: string;
     BillToCustomerID: number | null;
+    DedicatedEmail: string | null;
     IsTop: boolean;
 }
