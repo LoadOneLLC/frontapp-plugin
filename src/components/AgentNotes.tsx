@@ -15,7 +15,6 @@ const AgentNotes = () => {
   const [creatingQuote, setCreatingQuote] = useState(false);
   const [replyingQuote, setReplyingQuote] = useState(false);
 
-  /*
   // Auto update draft with dedicated email from agent note
   useEffect(() => {
     if (typeof context.conversation.draftId !== 'undefined') {
@@ -37,7 +36,6 @@ const AgentNotes = () => {
         });
     }
   }, [context, notes, selectedNoteID]);
-  */
 
   useEffect(() => {
     if (import.meta.env.DEV)
