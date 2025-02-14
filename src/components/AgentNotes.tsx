@@ -15,6 +15,30 @@ const AgentNotes = () => {
   const [creatingQuote, setCreatingQuote] = useState(false);
   const [replyingQuote, setReplyingQuote] = useState(false);
 
+  /*
+  // Auto update draft with dedicated email from agent note
+  useEffect(() => {
+    if (typeof context.conversation.draftId !== 'undefined') {
+      context.fetchDraft(context.conversation.draftId)
+        .then(draft => {
+          if (draft) {
+            const note = notes.find(n => n.ID === selectedNoteID);
+            if (note &&
+              note.DedicatedEmail &&
+              draft.to?.find(t => t.handle.toLowerCase() === note.DedicatedEmail?.toLowerCase()) === undefined &&
+              draft.cc?.find(cc => cc.handle.toLowerCase() === note.DedicatedEmail?.toLowerCase()) === undefined
+            ) {
+              context.updateDraft(draft.id, {
+                updateMode: 'insert',
+                cc: [note.DedicatedEmail],
+              });
+            }
+          }
+        });
+    }
+  }, [context, notes, selectedNoteID]);
+  */
+
   useEffect(() => {
     if (import.meta.env.DEV)
     {
