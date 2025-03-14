@@ -18,8 +18,10 @@ const AgentNotes = () => {
   // Auto update draft with dedicated email from agent note
   useEffect(() => {
     if (typeof context.conversation.draftId !== 'undefined') {
+      let isCancelled = true;
       context.fetchDraft(context.conversation.draftId)
         .then(draft => {
+          if (!isCancelled) return;
           if (draft) {
             const note = notes.find(n => n.ID === selectedNoteID);
             if (note &&
@@ -34,6 +36,7 @@ const AgentNotes = () => {
             }
           }
         });
+      return () => { isCancelled = false; }
     }
   }, [context, notes, selectedNoteID]);
 
