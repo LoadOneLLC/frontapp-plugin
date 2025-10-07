@@ -1,11 +1,11 @@
 import { useFrontContext } from '../providers/frontContext';
-import Front, { SingleConversationContext } from '@frontapp/plugin-sdk';
+import Front, { type SingleConversationContext } from '@frontapp/plugin-sdk';
 import { useEffect, useState, Fragment } from 'react';
 import { toast } from 'react-toastify';
 import { Listbox, Transition } from '@headlessui/react'
-import { JsonResponse } from '../TypeGen/json-response';
-import { ViewModel } from '../TypeGen/GetAgentNote/view-model';
-import { NoteViewModel } from '../TypeGen/GetAgentNote/note-view-model';
+import type { JsonResponse } from '../TypeGen/json-response';
+import type { ViewModel } from '../TypeGen/GetAgentNote/view-model';
+import type { NoteViewModel } from '../TypeGen/GetAgentNote/note-view-model';
 import { ChevronUpDownIcon } from '@heroicons/react/20/solid';
 
 const AgentNotes = () => {
@@ -17,7 +17,7 @@ const AgentNotes = () => {
 
   // Auto update draft with dedicated email from agent note
   useEffect(() => {
-    if (typeof context.conversation.draftId !== 'undefined') {
+    if (typeof context?.conversation.draftId !== 'undefined') {
       let isCancelled = true;
       context.fetchDraft(context.conversation.draftId)
         .then(draft => {

@@ -1,9 +1,9 @@
-import { SingleConversationContext } from '@frontapp/plugin-sdk';
+import { type SingleConversationContext } from '@frontapp/plugin-sdk';
 import { CheckIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { toast } from 'react-toastify';
 import { useFrontContext } from "../providers/frontContext";
-import { JsonResponse } from '../TypeGen/json-response';
+import type { JsonResponse } from '../TypeGen/json-response';
 
 const CustomerQuoted = () => {
   const [bidAmount, setBidAmount] = useState('');
@@ -48,7 +48,7 @@ const CustomerQuoted = () => {
   return <div className="mt-2">
     <label htmlFor="bidAmount" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Mark As Quoted</label>
     <div className="mt-1 flex rounded-md shadow-sm">
-      <div className="relative flex flex-grow items-stretch focus-within:z-10">
+      <div className="relative flex grow items-stretch focus-within:z-10">
         <input
           required
           type="number"

@@ -1,5 +1,4 @@
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import AgentNotes from './components/AgentNotes';
 import CarrierGroups from './components/CarrierGroups';
@@ -15,7 +14,7 @@ const App = () => {
   if (import.meta.env.DEV)
   {
     return (
-      <div className="p-1">
+      <div className="p-1 w-full">
         <AgentNotes />
         <CustomerQuoted />
         <OrderStatusUpdate />
@@ -34,7 +33,7 @@ const App = () => {
     )
 
   return (
-    <div className="p-1">
+    <div className="p-1 w-full">
       {context.type === 'singleConversation' ? <AgentNotes /> : null}
       {context.type === 'singleConversation' ? <CustomerQuoted /> : null}
       {context.type === 'singleConversation' ? <OrderStatusUpdate /> : null}

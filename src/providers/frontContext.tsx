@@ -1,8 +1,8 @@
 import Front from '@frontapp/plugin-sdk'
-import { WebViewContext } from '@frontapp/plugin-sdk/dist/webViewSdkTypes'
+import type { WebViewContext } from '@frontapp/plugin-sdk/dist/webViewSdkTypes'
 import {
 	createContext,
-	PropsWithChildren,
+	type PropsWithChildren,
 	useContext,
 	useEffect,
 	useState,

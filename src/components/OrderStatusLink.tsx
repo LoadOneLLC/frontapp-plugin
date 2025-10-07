@@ -33,7 +33,7 @@ const OrderStatusLink = () => {
   return <div className="mt-2">
     <label htmlFor="orderNumber" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Copy Tracking Link</label>
     <div className="mt-1 flex rounded-md shadow-sm">
-      <div className="relative flex flex-grow items-stretch focus-within:z-10">
+      <div className="relative flex grow items-stretch focus-within:z-10">
         <input
           minLength={7}
           type="number"

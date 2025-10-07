@@ -1,5 +1,5 @@
 import { useEffect, useState, Fragment } from 'react';
-import { Combobox,  Transition } from '@headlessui/react';
+import { Combobox, Transition } from '@headlessui/react';
 import { ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import { toast } from 'react-toastify';
 
@@ -29,7 +29,9 @@ const CarrierGroups = () => {
       });
   }, []);
 
-  const _copyEmails = (carrierGroup: CarrierGroup) => {
+  const _copyEmails = (carrierGroup: CarrierGroup | null) => {
+    if (!carrierGroup) return;
+
     fetch('/Front/GetCarrierGroupEmails', {
       method: 'POST',
       headers: {
@@ -59,7 +61,7 @@ const CarrierGroups = () => {
   return (
     <div className="mt-2">
       <label htmlFor="carrierGroups" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Copy Carrier Group Emails</label>
-      <Combobox onChange={(value: CarrierGroup) => _copyEmails(value)}>
+      <Combobox onChange={(value: CarrierGroup | null) => _copyEmails(value)}>
         <div className="relative mt-1">
           <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
             <Combobox.Input
