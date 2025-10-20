@@ -2,7 +2,7 @@ import { useFrontContext } from '../providers/frontContext';
 import Front, { type SingleConversationContext } from '@frontapp/plugin-sdk';
 import { useEffect, useState, Fragment } from 'react';
 import { toast } from 'react-toastify';
-import { Listbox, Transition } from '@headlessui/react'
+import { Listbox, ListboxButton, ListboxOption, ListboxOptions, Transition } from '@headlessui/react'
 import type { JsonResponse } from '../TypeGen/json-response';
 import type { ViewModel } from '../TypeGen/GetAgentNote/view-model';
 import type { NoteViewModel } from '../TypeGen/GetAgentNote/note-view-model';
@@ -179,7 +179,7 @@ const AgentNotes = () => {
       <h4 className='text-xl dark:text-white'>AGENT NOTES</h4>
       {notes.length > 1 &&  <Listbox value={selectedNoteID} onChange={setSelectedNoteID}>
         <div className="relative mt-1 mb-2">
-          <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+          <ListboxButton className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
             <span className="block truncate">{notes.find(n => n.ID === selectedNoteID)?.Tag1 ?? "Select Agent Note"}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
@@ -187,22 +187,18 @@ const AgentNotes = () => {
                 aria-hidden="true"
               />
             </span>
-          </Listbox.Button>
+          </ListboxButton>
           <Transition
             as={Fragment}
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm dark:bg-gray-900">
+            <ListboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm dark:bg-gray-900">
               {notes.map((note) => (
-                <Listbox.Option
+                <ListboxOption
                   key={note.ID}
-                  className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? 'text-white bg-sky-600' : 'text-gray-900 dark:text-gray-300'
-                    }`
-                  }
+                  className="relative cursor-default select-none py-2 pl-10 pr-4 text-gray-900 dark:text-gray-300 data-focus:bg-sky-600 data-focus:text-white"
                   value={note.ID}
                 >
                   <span
@@ -210,9 +206,9 @@ const AgentNotes = () => {
                   >
                     {note.Tag1 ?? "No Tag1"}
                   </span>
-                </Listbox.Option>
+                </ListboxOption>
               ))}
-            </Listbox.Options>
+            </ListboxOptions>
           </Transition>
         </div>
       </Listbox>}

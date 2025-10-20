@@ -102,7 +102,7 @@ const CarrierGroups = () => {
               filteredCarriers.map((carrierGroup) => (
                 <ComboboxOption
                   key={carrierGroup.GroupID}
-                  className={({ focus }) => `relative cursor-default select-none py-2 pl-10 pr-4 ${focus ? 'text-white bg-sky-600' : 'text-gray-900 dark:text-gray-300'}`}
+                  className="relative cursor-default select-none py-2 pl-10 pr-4 text-gray-900 dark:text-gray-300 data-focus:bg-sky-600 data-focus:text-white"
                   value={carrierGroup}
                 >
                   <span
