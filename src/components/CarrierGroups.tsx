@@ -1,5 +1,5 @@
 import { useEffect, useState, Fragment } from 'react';
-import { Combobox, Transition } from '@headlessui/react';
+import { Combobox, ComboboxButton, ComboboxInput, ComboboxOption, ComboboxOptions, Transition } from '@headlessui/react';
 import { ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import { toast } from 'react-toastify';
 
@@ -15,6 +15,16 @@ const CarrierGroups = () => {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
+    if (import.meta.env.DEV)
+    {
+      setCarrierGroups([
+        { GroupID: 1, Name: 'Group A', VehicleTypeName: 'Truck' },
+        { GroupID: 2, Name: 'Group B', VehicleTypeName: 'Van' },
+        { GroupID: 3, Name: 'Group C', VehicleTypeName: null },
+      ]);
+      setLoading(false);
+      return;
+    }
     fetch('/Front/GetCarrierGroups', {
       method: 'GET',
       headers: {
@@ -64,17 +74,17 @@ const CarrierGroups = () => {
       <Combobox onChange={(value: CarrierGroup | null) => _copyEmails(value)}>
         <div className="relative mt-1">
           <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
-            <Combobox.Input
+            <ComboboxInput
               className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
               placeholder="Filter Carrier Groups.."
               onChange={(event) => setFilter(event.target.value)}
             />
-            <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
+            <ComboboxButton className="absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
                 className="h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-            </Combobox.Button>
+            </ComboboxButton>
           </div>
           <Transition
             as={Fragment}
@@ -83,16 +93,16 @@ const CarrierGroups = () => {
             leaveTo="opacity-0"
             afterLeave={() => setFilter('')}
           >
-            <Combobox.Options className="mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-900">
+            <ComboboxOptions className="mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-900">
               {filteredCarriers.length === 0 && filter !== '' ? (
                 <div className="relative cursor-default select-none py-2 px-4 text-gray-700 dark:text-gray-300">
                   Nothing found.
                 </div>
               ) : (
               filteredCarriers.map((carrierGroup) => (
-                <Combobox.Option
+                <ComboboxOption
                   key={carrierGroup.GroupID}
-                  className={({ active }) => `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'text-white bg-sky-600' : 'text-gray-900 dark:text-gray-300'}`}
+                  className={({ focus }) => `relative cursor-default select-none py-2 pl-10 pr-4 ${focus ? 'text-white bg-sky-600' : 'text-gray-900 dark:text-gray-300'}`}
                   value={carrierGroup}
                 >
                   <span
@@ -100,9 +110,9 @@ const CarrierGroups = () => {
                   >
                     {carrierGroup.Name}
                   </span>
-                </Combobox.Option>
+                </ComboboxOption>
               )))}
-            </Combobox.Options>
+            </ComboboxOptions>
           </Transition>
         </div>
       </Combobox>
