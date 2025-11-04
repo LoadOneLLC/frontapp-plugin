@@ -5,6 +5,7 @@ import CarrierGroups from './components/CarrierGroups';
 import OrderStatusLink from './components/OrderStatusLink';
 import OrderStatusUpdate from './components/OrderStatusUpdate';
 import CustomerQuoted from './components/CustomerQuoted';
+import CustomerLink from './components/CustomerLink';
 import { useFrontContext } from './providers/frontContext';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
     return (
       <div className="p-1 w-full">
         <AgentNotes />
+        <CustomerLink />
         <CustomerQuoted />
         <OrderStatusUpdate />
         <OrderStatusLink />
@@ -35,6 +37,7 @@ const App = () => {
   return (
     <div className="p-1 w-full">
       {context.type === 'singleConversation' ? <AgentNotes /> : null}
+      {context.type === 'singleConversation' ? <CustomerLink /> : null}
       {context.type === 'singleConversation' ? <CustomerQuoted /> : null}
       {context.type === 'singleConversation' ? <OrderStatusUpdate /> : null}
       <OrderStatusLink />
