@@ -2,8 +2,6 @@ import { type SingleConversationContext } from '@frontapp/plugin-sdk';
 import { useState } from "react";
 import { toast } from 'react-toastify';
 import { useFrontContext } from "../providers/frontContext";
-import type { JsonResponse } from '../TypeGen/json-response';
-import type { ApiLink } from '../TypeGen/api-link';
 
 const CustomerLink = () => {
   const [saving, setSaving] = useState(false);
@@ -23,20 +21,16 @@ const CustomerLink = () => {
       })
     })
       .then(async (response) => {
-        const json = await response.json() as JsonResponse;
+        const json = await response.json() as { Success: boolean; ErrorMessage: string; Html: string };
         if (json.Success) {
-          const customerLink = json.Links.find(l => l.Name === 'QuoteResponse') as ApiLink;
           if (typeof context?.conversation.draftId !== 'undefined') {
-            const bookItLink = `${customerLink.Link}?action=book`;
-            const counterLink = `${customerLink.Link}?action=counter`;
-            const declineLink = `${customerLink.Link}?action=decline`;
             context.fetchDraft(context.conversation.draftId)
               .then(draft => {
                 if (draft) {
                   context.updateDraft(draft.id, {
                     updateMode: 'insert',
                     content: {
-                      body: `<a href="${bookItLink}" style="color: #10b981">Book It</a> | <a href="${counterLink}" style="color: #3b82f6">Counter</a> | <a href="${declineLink}" style="color: #ef4444">Decline</a>`,
+                      body: json.Html,
                       type: 'html'
                     }
                   });
