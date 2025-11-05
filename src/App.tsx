@@ -7,6 +7,7 @@ import OrderStatusUpdate from './components/OrderStatusUpdate';
 import CustomerQuoted from './components/CustomerQuoted';
 import CustomerLink from './components/CustomerLink';
 import { useFrontContext } from './providers/frontContext';
+import { Feature, FEATURE_FLAGS } from './featureFlags';
 
 const App = () => {
   const context = useFrontContext();
@@ -17,7 +18,9 @@ const App = () => {
     return (
       <div className="p-1 w-full">
         <AgentNotes />
-        <CustomerLink />
+        <Feature name={FEATURE_FLAGS.CustomerLink}>
+          <CustomerLink />
+        </Feature>
         <CustomerQuoted />
         <OrderStatusUpdate />
         <OrderStatusLink />
@@ -37,7 +40,7 @@ const App = () => {
   return (
     <div className="p-1 w-full">
       {context.type === 'singleConversation' ? <AgentNotes /> : null}
-      {context.type === 'singleConversation' ? <CustomerLink /> : null}
+      {context.type === 'singleConversation' ? <Feature name={FEATURE_FLAGS.CustomerLink}><CustomerLink /></Feature> : null}
       {context.type === 'singleConversation' ? <CustomerQuoted /> : null}
       {context.type === 'singleConversation' ? <OrderStatusUpdate /> : null}
       <OrderStatusLink />
