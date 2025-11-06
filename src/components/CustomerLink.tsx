@@ -42,7 +42,7 @@ const CustomerLink = () => {
         }
       })
       .catch(() => {
-        toast('Unable to insert customer link.');
+        toast('Unable to insert option links.');
       })
       .finally(() => setSaving(false));
   }
@@ -53,7 +53,7 @@ const CustomerLink = () => {
         onClick={_insertLink}
         disabled={saving}
       >
-        Insert Customer Link
+        Insert Option Links
       </button>
     : null;
 }
