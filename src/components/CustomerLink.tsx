@@ -42,7 +42,7 @@ const CustomerLink = () => {
         }
       })
       .catch(() => {
-        toast('Unable to insert option links.');
+        toast('Unable to insert Book It button.');
       })
       .finally(() => setSaving(false));
   }
@@ -53,7 +53,7 @@ const CustomerLink = () => {
         onClick={_insertLink}
         disabled={saving}
       >
-        Insert Option Links
+        Insert Book It Button
       </button>
     : null;
 }
