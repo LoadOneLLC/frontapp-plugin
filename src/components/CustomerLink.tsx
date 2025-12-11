@@ -7,7 +7,7 @@ const CustomerLink = () => {
   const [saving, setSaving] = useState(false);
   const context = useFrontContext() as SingleConversationContext;
 
-  const _insertLink = () => {
+  const _insertLink = (includeCounterOffer: boolean) => {
     setSaving(true);
     fetch('/Front/CustomerLink', {
       method: 'POST',
@@ -18,6 +18,7 @@ const CustomerLink = () => {
       body: JSON.stringify({
         ConversationID: context.conversation.id,
         TeammateID: context.teammate.id,
+        IncludeCounterOffer: includeCounterOffer
       })
     })
       .then(async (response) => {
@@ -50,7 +51,7 @@ const CustomerLink = () => {
   return typeof context?.conversation.draftId !== 'undefined'
     ? <button
         className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm"
-        onClick={_insertLink}
+        onClick={() => _insertLink(true)}
         disabled={saving}
       >
         Insert Book It Button
