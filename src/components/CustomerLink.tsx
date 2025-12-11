@@ -49,13 +49,22 @@ const CustomerLink = () => {
   }
 
   return typeof context?.conversation.draftId !== 'undefined'
-    ? <button
-        className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm"
-        onClick={() => _insertLink(true)}
-        disabled={saving}
-      >
-        Insert Book It Button
-      </button>
+    ? <>
+        <button
+          className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm"
+          onClick={() => _insertLink(true)}
+          disabled={saving}
+        >
+          Book It Buttons
+        </button>
+        <button
+          className="px-4 py-2 mb-2 d-block w-full font-semibold text-sm bg-sky-600 hover:bg-sky-700 text-white rounded-md shadow-sm"
+          onClick={() => _insertLink(false)}
+          disabled={saving}
+        >
+          Book It Buttons (No Counter)
+        </button>
+      </>
     : null;
 }
 
