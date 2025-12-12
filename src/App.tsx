@@ -17,7 +17,7 @@ const App = () => {
   if (import.meta.env.DEV)
   {
     return (
-      <div className="p-1 w-full">
+      <div className="p-1 w-full pb-16">
         <AgentNotes />
         <Feature name={FEATURE_FLAGS.CustomerLink}>
           <CustomerLink />
@@ -26,8 +26,8 @@ const App = () => {
         <OrderStatusUpdate />
         <OrderStatusLink />
         <CarrierGroups />
-        <ToastContainer theme='dark' />
         <FeatureFlagPanel />
+        <ToastContainer theme='dark' />
       </div>
     );
   }
@@ -40,15 +40,15 @@ const App = () => {
     )
 
   return (
-    <div className="p-1 w-full">
+    <div className="p-1 w-full pb-16">
       {context.type === 'singleConversation' ? <AgentNotes /> : null}
       {context.type === 'singleConversation' ? <Feature name={FEATURE_FLAGS.CustomerLink}><CustomerLink /></Feature> : null}
       {context.type === 'singleConversation' ? <CustomerQuoted /> : null}
       {context.type === 'singleConversation' ? <OrderStatusUpdate /> : null}
       <OrderStatusLink />
       <CarrierGroups />
-      <ToastContainer theme='dark' />
       <FeatureFlagPanel />
+      <ToastContainer theme='dark' />
     </div>
   );
 }
