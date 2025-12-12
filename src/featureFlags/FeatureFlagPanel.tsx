@@ -66,7 +66,7 @@ export const FeatureFlagPanel = () => {
   };
 
   return (
-    <Popover className="fixed bottom-4 right-4 z-40">
+    <Popover className="mr-2 mt-2 z-1">
       {() => (
         <>
           <PopoverButton
@@ -77,7 +77,7 @@ export const FeatureFlagPanel = () => {
             <CodeBracketIcon className="h-5 w-5" />
           </PopoverButton>
 
-          <PopoverPanel className="absolute bottom-16 right-0 w-72 rounded-lg border border-slate-200 bg-white p-4 shadow-2xl">
+          <PopoverPanel className="absolute right-0 top-10 w-72 rounded-lg border border-slate-200 bg-white p-4 shadow-2xl">
             <div className="mb-3 text-sm font-semibold text-slate-800">Features</div>
             <div className="flex flex-col gap-2">
               {FLAG_NAMES.map((flag) => (
