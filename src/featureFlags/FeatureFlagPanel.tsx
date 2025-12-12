@@ -71,7 +71,7 @@ export const FeatureFlagPanel = () => {
         <>
           <PopoverButton
             type="button"
-            className="text-slate-400 opacity-70 transition hover:text-slate-600 hover:opacity-100"
+            className="text-slate-400 opacity-30 transition hover:text-slate-600 hover:opacity-100"
             aria-label="Toggle features"
           >
             <CodeBracketIcon className="h-5 w-5" />
