@@ -8,6 +8,7 @@ import CustomerQuoted from './components/CustomerQuoted';
 import CustomerLink from './components/CustomerLink';
 import { useFrontContext } from './providers/frontContext';
 import { Feature, FEATURE_FLAGS } from './featureFlags';
+import { FeatureFlagPanel } from './featureFlags/FeatureFlagPanel';
 
 const App = () => {
   const context = useFrontContext();
@@ -26,6 +27,7 @@ const App = () => {
         <OrderStatusLink />
         <CarrierGroups />
         <ToastContainer theme='dark' />
+        <FeatureFlagPanel />
       </div>
     );
   }
@@ -46,6 +48,7 @@ const App = () => {
       <OrderStatusLink />
       <CarrierGroups />
       <ToastContainer theme='dark' />
+      <FeatureFlagPanel />
     </div>
   );
 }
