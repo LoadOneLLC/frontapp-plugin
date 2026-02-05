@@ -1,12 +1,14 @@
-import Front, { type SingleConversationContext } from '@frontapp/plugin-sdk';
+import { type SingleConversationContext } from '@frontapp/plugin-sdk';
 import { EnvelopeIcon } from "@heroicons/react/20/solid";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from 'react-toastify';
 import { useFrontContext } from "../providers/frontContext";
 
 const OrderStatusUpdate = () => {
   const [orderNumber, setOrderNumber] = useState('');
   const context = useFrontContext() as SingleConversationContext;
+  const contextRef = useRef(context);
+  contextRef.current = context;
 
   const _insertStatusUpdate = () => {
     if (orderNumber.length < 7) {
@@ -25,8 +27,17 @@ const OrderStatusUpdate = () => {
         .then(async (response) => {
           const json = await response.json();
 
-          context.listMessages().then((messages) =>
-            Front.createDraft({
+          if (typeof contextRef.current?.conversation.draftId !== 'undefined') {
+            await contextRef.current.updateDraft(contextRef.current.conversation.draftId, {
+              updateMode: 'insert',
+              content: {
+                body: json.BodyHtml,
+                type: 'html'
+              }
+            });
+          } else {
+            const messages = await contextRef.current.listMessages();
+            await contextRef.current.createDraft({
               content: {
                 body: json.BodyHtml,
                 type: 'html'
@@ -35,8 +46,8 @@ const OrderStatusUpdate = () => {
                 type: 'replyAll',
                 originalMessageId: messages.results[messages.results.length - 1].id
               }
-            })
-          );
+            });
+          }
         })
         .catch(() => {
             toast('Unable to create Status Update, usually this is because we couldn\'t find the Order #');
